@@ -1,16 +1,23 @@
 <template>
   <article class="row">
-    <p>{{ title }}</p>
-    <p>{{ isbn }}</p>
-    <button>Add Bookmark</button>
+    <p>{{ book.title }}</p>
+    <p>{{ book.isbn }}</p>
+    <button @click="changeBookmark" :class="book.isBookmarked ? `bookmarked` : ``">
+      {{ book.isBookmarked ? 'Delete Bookmark' : 'Add Bookmark' }}
+    </button>
   </article>
 </template>
 
 <script>
 export default {
   props: {
-    title: String,
-    isbn: String
+    book: Object
+  },
+  emits: ['changeBookmark'],
+  methods: {
+    changeBookmark() {
+      this.$emit('changeBookmark', this.isBookmarked)
+    }
   }
 }
 </script>
@@ -20,5 +27,9 @@ button {
   margin: 0.5rem;
   border: 2px solid blueviolet;
   color: blueviolet;
+}
+.bookmarked {
+  background-color: blueviolet;
+  color: white;
 }
 </style>

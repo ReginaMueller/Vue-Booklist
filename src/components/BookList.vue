@@ -10,8 +10,8 @@
         class="booklist"
         v-for="book in books"
         :key="book.isbn"
-        :title="book.title"
-        :isbn="book.isbn"
+        :book="book"
+        @changeBookmark="changeBookmark(book)"
       />
     </section>
   </article>
@@ -23,24 +23,35 @@ export default {
   components: {
     BookListRow
   },
+
+  methods: {
+    changeBookmark(book) {
+      book.isBookmarked = !book.isBookmarked
+    }
+  },
+
   data() {
     return {
       books: [
         {
           title: 'Practical Rust Web Projects',
-          isbn: '9781484265888'
+          isbn: '9781484265888',
+          isBookmarked: false
         },
         {
           title: 'Using WebPagetest',
-          isbn: '9781491902592'
+          isbn: '9781491902592',
+          isBookmarked: false
         },
         {
           title: 'Web Scraping with Python',
-          isbn: '9781491910290'
+          isbn: '9781491910290',
+          isBookmarked: false
         },
         {
           title: 'High Performance Mobile Web',
-          isbn: '9781491912553'
+          isbn: '9781491912553',
+          isBookmarked: false
         }
       ]
     }
