@@ -2,7 +2,12 @@
   <header>
     <p>📚📖👀 Tech Bookstore</p>
     <section>
-      <button>Home</button>
+      <router-link to="/" v-slot="{ href, route, navigate }">
+        <button :href="href" @click="navigate" class="home-button">
+          {{ route.name }}
+        </button>
+      </router-link>
+      <!-- <button @click="$router.push('/')">Home</button> -->
       <a href="coding-bootcamps.eu">coding-bootcamps.eu</a>
     </section>
   </header>
@@ -23,7 +28,7 @@ p {
 section {
   _display: flex;
 }
-button {
+.home-button {
   background-color: navy;
   color: white;
   padding: 0.5rem;

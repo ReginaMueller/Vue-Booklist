@@ -1,16 +1,14 @@
 <template>
   <HeaderComponent />
-  <article class="presentation">
-    <BookList />
-  </article>
+  <main class="presentation">
+    <RouterView />
+  </main>
 </template>
 
 <script>
-import BookList from './components/BookList.vue'
 import HeaderComponent from './components/HeaderComponent.vue'
 export default {
   components: {
-    BookList,
     HeaderComponent
   }
 }
@@ -18,6 +16,6 @@ export default {
 <style>
 .presentation {
   margin: auto;
-  width: 50%;
+  width: 70%;
 }
 </style>

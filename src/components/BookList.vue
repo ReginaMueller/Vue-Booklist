@@ -24,37 +24,33 @@ export default {
     BookListRow
   },
 
-  methods: {
-    changeBookmark(book) {
-      book.isBookmarked = !book.isBookmarked
+  data() {
+    return {
+      books: [],
+      // apiUrl: 'http://localhost:4730/books?_page=${state.page}&_limit=${state.row * 5}'
+      apiUrl: 'https://book-api.lanixx.com/books?_page=${state.page}&_limit=${state.row * 5}'
     }
   },
 
-  data() {
-    return {
-      books: [
-        {
-          title: 'Practical Rust Web Projects',
-          isbn: '9781484265888',
-          isBookmarked: false
-        },
-        {
-          title: 'Using WebPagetest',
-          isbn: '9781491902592',
-          isBookmarked: false
-        },
-        {
-          title: 'Web Scraping with Python',
-          isbn: '9781491910290',
-          isBookmarked: false
-        },
-        {
-          title: 'High Performance Mobile Web',
-          isbn: '9781491912553',
-          isBookmarked: false
-        }
-      ]
+  methods: {
+    changeBookmark(book) {
+      book.isBookmarked = !book.isBookmarked
+    },
+
+    async getAllBooks() {
+      fetch(this.apiUrl)
+        .then((res) => res.json())
+        .then((booksFromApi) => {
+          this.books = booksFromApi
+        })
+        .catch(() => {
+          console.log('database not available')
+        })
     }
+  },
+
+  created() {
+    this.getAllBooks()
   }
 }
 </script>

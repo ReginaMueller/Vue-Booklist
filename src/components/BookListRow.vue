@@ -1,6 +1,8 @@
 <template>
   <article class="row">
-    <p>{{ book.title }}</p>
+    <RouterLink :to="'/book/' + book.isbn">
+      <p>{{ book.title }}</p>
+    </RouterLink>
     <p>{{ book.isbn }}</p>
     <button @click="changeBookmark" :class="book.isBookmarked ? `bookmarked` : ``">
       {{ book.isBookmarked ? 'Delete Bookmark' : 'Add Bookmark' }}
@@ -31,5 +33,9 @@ button {
 .bookmarked {
   background-color: blueviolet;
   color: white;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
